@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    app:showAsAction="never"
+    tools:context=".MainActivityManager">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.157" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="username"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="63dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <RelativeLayout
+        android:layout_width="338dp"
+        android:layout_height="309dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--        <Button-->
+        <!--            android:id="@+id/button2"-->
+        <!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+        <!--            android:layout_width="300dp"-->
+        <!--            android:layout_height="43dp"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_alignParentBottom="true"-->
+        <!--            android:layout_marginStart="21dp"-->
+        <!--            android:layout_marginLeft="21dp"-->
+        <!--            android:layout_marginTop="147dp"-->
+        <!--            android:layout_marginEnd="15dp"-->
+        <!--            android:layout_marginRight="15dp"-->
+        <!--            android:layout_marginBottom="120dp"-->
+        <!--            android:background="@drawable/custom_button"-->
+        <!--            android:hapticFeedbackEnabled="true"-->
+        <!--            android:onClick="addProductAction"-->
+        <!--            android:shadowColor="#00FFFF"-->
+        <!--            android:text="Add product"-->
+        <!--            android:textAllCaps="false"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:typeface="normal"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:layout_constraintVertical_bias="0.425"-->
+        <!--            tools:ignore="TouchTargetSizeCheck" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/DeleteProduct"-->
+        <!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+        <!--            android:layout_width="300dp"-->
+        <!--            android:layout_height="43dp"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_alignParentBottom="true"-->
+        <!--            android:layout_marginStart="21dp"-->
+        <!--            android:layout_marginLeft="21dp"-->
+        <!--            android:layout_marginTop="210dp"-->
+        <!--            android:layout_marginEnd="14dp"-->
+        <!--            android:layout_marginRight="14dp"-->
+        <!--            android:layout_marginBottom="60dp"-->
+        <!--            android:background="@drawable/custom_button"-->
+        <!--            android:hapticFeedbackEnabled="true"-->
+        <!--            android:onClick="DeleteProductAction"-->
+        <!--            android:shadowColor="#00FFFF"-->
+        <!--            android:text="Delete and modify product"-->
+        <!--            android:textAllCaps="false"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:typeface="normal"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:layout_constraintVertical_bias="0.58"-->
+        <!--            tools:ignore="TouchTargetSizeCheck" />-->
+
+        <!--            app:srcCompat="@drawable/icons8_grocery_shelf_100"-->
+        <!--            tools:srcCompat="@drawable/icons8_grocery_shelf_100" -->
+
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="130dp"
+            android:layout_height="111dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="175dp"
+            android:background="@drawable/add4"
+            android:contentDescription="@string/app_name"
+            android:onClick="addProductAction" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="135dp"
+            android:layout_height="116dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="182dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/org2"
+            android:contentDescription="@string/app_name"
+            android:onClick="DeleteProductAction" /><![CDATA[// app:srcCompat="@drawable/icons8_grocery_shelf_100" />
+
+        ]]>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

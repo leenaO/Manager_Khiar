@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    tools:context=".ingredientsProductImg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="3dp"
+                app:cardMaxElevation="3dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:text="Result"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/resultEt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:background="@null"
+                        android:hint=""
+                        android:padding="5dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="3dp"
+                app:cardMaxElevation="3dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:text="Image preview"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/imageIv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxHeight="250dp"
+                        ></ImageView>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="save the product's ingredients"
+                    android:background="@drawable/manager_button"
+                    android:textColor="@color/white"
+                    android:id="@+id/saveTheProductIngredients"
+                    >
+
+                </Button>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>
+
+<!--<Button-->
+<!--android:id="@+id/detectIngredients"-->
+<!--android:layout_width="336dp"-->
+<!--android:layout_height="36dp"-->
+<!--android:layout_alignParentStart="true"-->
+<!--android:layout_alignParentTop="true"-->
+<!--android:layout_alignParentEnd="true"-->
+<!--android:layout_alignParentBottom="true"-->
+<!--android:layout_marginStart="37dp"-->
+<!--android:layout_marginTop="547dp"-->
+<!--android:layout_marginEnd="38dp"-->
+<!--android:layout_marginBottom="148dp"-->
+<!--android:background="@drawable/manager_button"-->
+<!--android:text="detect the text"-->
+<!--android:textColor="#FFFFFF"-->
+<!--app:layout_constraintBottom_toBottomOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintHorizontal_bias="0.493"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toTopOf="parent"-->
+<!--app:layout_constraintVertical_bias="0.897"-->
+<!--tools:ignore="TouchTargetSizeCheck" />-->
+
+<!--<Button-->
+<!--android:id="@+id/CaptureImage"-->
+<!--android:layout_width="336dp"-->
+<!--android:layout_height="36dp"-->
+<!--android:layout_alignParentStart="true"-->
+<!--android:layout_alignParentTop="true"-->
+<!--android:layout_alignParentEnd="true"-->
+<!--android:layout_alignParentBottom="true"-->
+<!--android:layout_marginStart="32dp"-->
+<!--android:layout_marginTop="480dp"-->
+<!--android:layout_marginEnd="43dp"-->
+<!--android:layout_marginBottom="214dp"-->
+<!--android:background="@drawable/manager_button"-->
+<!--android:text="snap "-->
+<!--android:textColor="#FFFFFF"-->
+<!--app:layout_constraintBottom_toBottomOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintHorizontal_bias="0.493"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toTopOf="parent"-->
+<!--app:layout_constraintVertical_bias="0.817"-->
+<!--tools:ignore="TouchTargetSizeCheck" />-->
+
+<!--<ImageView-->
+<!--android:id="@+id/ingredientsImg"-->
+<!--android:layout_width="205dp"-->
+<!--android:layout_height="118dp"-->
+<!--android:layout_marginStart="130dp"-->
+<!--android:layout_marginTop="89dp"-->
+<!--android:layout_marginEnd="131dp"-->
+<!--android:layout_marginBottom="561dp"-->
+<!--app:layout_constraintBottom_toBottomOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintHorizontal_bias="0.487"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toTopOf="parent"-->
+<!--app:layout_constraintVertical_bias="0.116"-->
+<!--app:srcCompat="@drawable/icons8_camera_24" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/ExtractedIngredients"-->
+<!--android:layout_width="359dp"-->
+<!--android:layout_height="268dp"-->
+<!--android:layout_alignParentStart="true"-->
+<!--android:layout_alignParentTop="true"-->
+<!--android:layout_alignParentEnd="true"-->
+<!--android:layout_alignParentBottom="true"-->
+<!--android:layout_marginStart="23dp"-->
+<!--android:layout_marginTop="179dp"-->
+<!--android:layout_marginEnd="29dp"-->
+<!--android:layout_marginBottom="284dp"-->
+<!--android:text=""-->
+<!--app:layout_constraintBottom_toBottomOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintHorizontal_bias="0.505"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toTopOf="parent"-->
+<!--app:layout_constraintVertical_bias="0.571" />-->

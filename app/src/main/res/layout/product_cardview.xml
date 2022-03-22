@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="135dp"
+    android:layout_height="175dp"
+    android:elevation="4dp"
+    android:layout_gravity="center"
+    app:cardCornerRadius="10dp"
+    app:contentPadding="3dp"
+    app:cardUseCompatPadding="true"
+    android:layout_margin="2dp">
+
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="164dp"
+        android:padding="1dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="91dp"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productImage"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="17dp"
+            android:text="Chicken Spicy"
+            android:textColor="#000000" />
+
+        <ImageButton
+            android:id="@+id/deleteProduct"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/productImage"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_toRightOf="@+id/productName"
+            android:background="@drawable/delete"
+            android:contentDescription="delete" />
+
+        <ImageButton
+            android:id="@+id/modifyProduct"
+            android:layout_width="24dp"
+            android:layout_height="21dp"
+            android:layout_below="@id/deleteProduct"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/productName"
+            android:background="@drawable/write"
+            android:contentDescription="modify"
+
+            />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

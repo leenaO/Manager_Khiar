@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name" color="#65946d">Khiar</string>
+    <string-array name="Section">
+        <item>Section</item>
+        <item>Frozen</item>
+        <item>Canned</item>
+        <item>Dairy</item>
+        <item>Fresh</item>
+        <item>Drinks</item>
+        <item>Snacks</item>
+    </string-array>
+
+    <string-array name="Diet">
+        <item>Diet</item>
+        <item>Keto</item>
+        <item>Vegetarian</item>
+        <item>Low calories</item>
+        <item>All</item>
+    </string-array>
+</resources>
