@@ -21,11 +21,17 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Scanner;
 
 public class KhiarAddPage extends AppCompatActivity {
     EditText name,price,amount;
@@ -37,6 +43,9 @@ public class KhiarAddPage extends AppCompatActivity {
     TextView productIngredientsTextView;
     String productIngredients;
     ImageButton ingredientsBtn;
+    boolean keto;
+    boolean sugarFree;
+    boolean vegan;
     int BACK =1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +108,10 @@ public class KhiarAddPage extends AppCompatActivity {
         map.put("amount",amount.getText().toString());
         map.put("section",section.getSelectedItem().toString());
         map.put("ingredients",productIngredientsTextView.getText().toString());
-        map.put("keto",dietSection());
+        dietSection();
+        map.put("keto",keto);
+        map.put("sugarFree",sugarFree);
+        map.put("vegan",vegan);
         FirebaseDatabase.getInstance().getReference().child("Products").push().setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -123,19 +135,52 @@ public class KhiarAddPage extends AppCompatActivity {
         Intent ingredientsImg = new Intent(this,ingredientsProductImg.class);
         startActivity(ingredientsImg);
     }
-    public boolean dietSection(){
-        boolean keto=true;
-        boolean low=true;
-        boolean vegan=true;
-        String[] ka={"apple","orange","dates","mango","pomegranate","banana","dried fruit","grape","kiwi"
-        ,"peach","fig","cantaloupe","pineapple","pear","raisin",
-                "potatoes","sweet potatoes","baked potatoes","corn","peas","carrot","yam","avocado oil"};
+    public void dietSection(){
+        keto=true;
+        sugarFree=true;
+        vegan=true;
+        /**String[] ka={"apple","orange","dates","mango","pomegranate","banana","dried fruit","grape","kiwi","peach","fig","cantaloupe","pineapple","pear","raisin",
+                "potatoes","sweet potatoes","baked potatoes","corn","peas","carrot","yam", "avocado oil",
+                "rice", "wheat", "oats", "barley","quinoa","kale",
+                "bread","corn flakes","pasta", "pizza","popcorn",
+                "Beans"};
         String[] la={"soybean oil","olive oil","coconut oil"};
-        String[] va={"milk"};
+        String[] va={"milk"};*/
+        String line="";
+        String line2="";
+        String line3="";
+        ArrayList<String> ketoAvoid=new ArrayList<>();
+        ArrayList<String> sugarAvoid=new ArrayList<>();
+        ArrayList<String> veganvoid=new ArrayList<>();
+        try{
+            File file=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\ketoAvoid.txt");
+            Scanner scan=new Scanner(file);
+            File file2=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\SugarFreeAvoid.txt");
+            Scanner scan2=new Scanner(file2);
+            File file3=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\veganAvoid.txt");
+            Scanner scan3=new Scanner(file3);
+            while(scan.hasNext()){
+                line=line.concat(scan.next()+" ");
+                ketoAvoid = new ArrayList<>(Arrays.asList(line.split(",")));
+            }
+            while(scan2.hasNext()){
+                line2=line2.concat(scan2.next()+" ");
+                sugarAvoid = new ArrayList<>(Arrays.asList(line2.split(",")));
+            }
+            while(scan3.hasNext()){
+                line3=line3.concat(scan3.next()+" ");
+                veganvoid = new ArrayList<>(Arrays.asList(line3.split(",")));
+            }
 
-        ArrayList<String> ketoAvoid=new ArrayList<>(Arrays.asList(ka));
-        ArrayList<String> lowAvoid=new ArrayList<>(Arrays.asList(la));
-        ArrayList<String> veganvoid=new ArrayList<>(Arrays.asList(va));
+
+        }catch (FileNotFoundException e){
+
+        }catch(IOException e){}
+
+        /**ArrayList<String> ketoAvoid=new ArrayList<>(Arrays.asList(ka));
+        ArrayList<String> lowAvoid=new ArrayList<>(Arrays.asList(sa));
+        ArrayList<String> veganvoid=new ArrayList<>(Arrays.asList(va));*/
+        String[] sugarfreeDrinksAvoid={"Blueberry", "Caramel", "Chai" , "Chamomile", "Chocolate", "Cinnamon", "Cranberry", "Echinacea"};
 
 
         String i=productIngredientsTextView.getText().toString();
@@ -152,7 +197,7 @@ public class KhiarAddPage extends AppCompatActivity {
         }else {
             for (String ingredient : ing) {
                 for (String avoid : ketoAvoid) {
-                    if (ingredient.toLowerCase().trim().equals(avoid.toLowerCase().trim())) {
+                    if (ingredient.toLowerCase().trim().contains(avoid.toLowerCase().trim())) {
                         keto = false;
                     }
                 }
@@ -160,6 +205,44 @@ public class KhiarAddPage extends AppCompatActivity {
 
             }
         }
-        return keto;
+        if(s.toLowerCase().equals("drinks")){
+            for(String avoid: sugarfreeDrinksAvoid){
+                if(n.toLowerCase().trim().contains(avoid.toLowerCase().trim())){
+                    sugarFree=false;
+                }
+            }
+
+        }else{
+            for (String ingredient : ing) {
+                for (String avoid : sugarAvoid) {
+                    if (ingredient.toLowerCase().trim().contains(avoid.toLowerCase().trim())) {
+                        sugarFree = false;
+                    }
+                }
+
+
+            }
+
+        }
+        if(s.toLowerCase().equals("frozen")){
+            for(String avoid: veganvoid){
+                if(n.toLowerCase().trim().contains(avoid.toLowerCase().trim())){
+                    vegan=false;
+                }
+            }
+
+        }else{
+            for (String ingredient : ing) {
+                for (String avoid : veganvoid) {
+                    if (ingredient.toLowerCase().trim().contains(avoid.toLowerCase().trim())) {
+                        vegan = false;
+                    }
+                }
+
+
+            }
+
+        }
+
     }
 }

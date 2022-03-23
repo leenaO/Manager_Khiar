@@ -8,15 +8,15 @@ public class Product {
     String price;
     String ingredients;
     boolean keto=true;
-    boolean low=true;
+    boolean sugarFree=true;
     boolean vegan=true;
 
     public boolean isLow() {
-        return low;
+        return sugarFree;
     }
 
-    public void setLow(boolean low) {
-        this.low = low;
+    public void setLow(boolean sugarFree) {
+        this.sugarFree = sugarFree;
     }
 
     public boolean isVegan() {
