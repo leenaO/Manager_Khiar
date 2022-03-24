@@ -330,7 +330,6 @@ public class KhiarAddPage extends AppCompatActivity {
                     sugarFree=false;
                 }
             }
-
         }else{
             for (String ingredient : ing) {
                 for (String avoid : sugarAvoid) {
