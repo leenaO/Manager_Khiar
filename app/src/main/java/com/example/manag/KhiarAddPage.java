@@ -372,19 +372,18 @@ public class KhiarAddPage extends AppCompatActivity {
 
         dialog.setTitle("select Image");
         dialog.setItems(items, new DialogInterface.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (i ==0){
                     //camera
-                    if(!checkCameraPermission()) {
-                        requestCameraPermission();
+                    if(checkCameraPermission()) {
                         pickCamera();
+                    }else {
+                        requestCameraPermission();
                     }
                 }else if(i==1){
                     //gallery
-                    if(!checkStoragePermission()){
-
+                    if(checkStoragePermission()){
                         pickGallery();
                     }
                 }
@@ -430,44 +429,38 @@ public class KhiarAddPage extends AppCompatActivity {
         return result && result1;
 
     }
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        switch (requestCode) {
-//            case CAMERA_REQUEST_CODE:
-//                if (grantResults.length > 0) {
-//                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//                    if (cameraAccepted && writeStorageAccepted) {
-//                        pickCamera();
-//                    } else {
-//                        Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//                break;
-//            case STORAGE_REQUEST_CODE:
-//                if (grantResults.length > 0) {
-//                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//                    if (writeStorageAccepted) {
-//                        pickGallery();
-//                    } else {
-//                        Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//                break;
-//        }
-//    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case CAMERA_REQUEST_CODE:
+                if (grantResults.length > 0) {
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && writeStorageAccepted) {
+                        pickCamera();
+                    } else {
+                        Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+            case STORAGE_REQUEST_CODE:
+                if (grantResults.length > 0) {
+                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if (writeStorageAccepted) {
+                        pickGallery();
+                    } else {
+                        Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+        }
+    }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==BACK){
-            if(resultCode==RESULT_OK){
-                productIngredients=data.getStringExtra("IngredientsKey");
-                productIngredientsTextView.setText(productIngredients);
-            }
-        }
         if (resultCode == RESULT_OK) {
             if (requestCode == IMAGE_PICK_GALLERY_CODE) {
                 uri = data.getData();
@@ -494,6 +487,12 @@ public class KhiarAddPage extends AppCompatActivity {
                     e.printStackTrace();
 
                 }
+            }
+        }
+        if(requestCode==BACK){
+            if(resultCode==RESULT_OK){
+                productIngredients=data.getStringExtra("IngredientsKey");
+                productIngredientsTextView.setText(productIngredients);
             }
         }
     }
