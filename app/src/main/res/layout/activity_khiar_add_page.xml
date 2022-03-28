@@ -5,22 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".KhiarAddPage">
+    <!--    <Button-->
+    <!--        android:id="@+id/ingredients"-->
+    <!--        android:layout_width="336dp"-->
+    <!--        android:layout_height="36dp"-->
+    <!--        android:background="@drawable/manager_button"-->
 
-<!--    <Button-->
-<!--        android:id="@+id/ingredients"-->
-<!--        android:layout_width="336dp"-->
-<!--        android:layout_height="36dp"-->
-<!--        android:background="@drawable/manager_button"-->
-
-<!--        android:text="Product's ingredients"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.506"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.82"-->
-<!--        tools:ignore="TouchTargetSizeCheck" />-->
+    <!--        android:text="Product's ingredients"-->
+    <!--        android:textColor="#FFFFFF"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.506"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.82"-->
+    <!--        tools:ignore="TouchTargetSizeCheck" />-->
 
     <TextView
         android:id="@+id/textView3"
@@ -68,79 +67,82 @@
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:background="@drawable/manager_lay"
+        android:gravity="center"
+        android:onClick="FP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15">
+        app:layout_constraintVertical_bias="0.196">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/fPicture"
-            android:layout_width="50dp"
-            android:layout_height="37dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="20dp"
-
-            android:background="@drawable/camera"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/camera" />
 
         <TextView
             android:id="@+id/textView25"
-            android:layout_width="249dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/fPicture"
             android:layout_alignParentStart="true"
-
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
             android:text="front picture"
             android:textColor="#000000"
             android:textSize="16sp" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="120dp"
         android:layout_height="100dp"
-
+        android:gravity="center"
         android:background="@drawable/manager_lay"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/relativeLayout"
         app:layout_constraintTop_toTopOf="@+id/relativeLayout">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/bPicture"
-            android:layout_width="50dp"
-            android:layout_height="37dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="true"
 
-            android:layout_marginStart="37dp"
-            android:layout_marginLeft="37dp"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="2dp"
 
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="33dp"
-            android:background="@drawable/camera"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            android:src="@drawable/camera" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/backfon"
             android:layout_width="249dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/bPicture"
             android:layout_alignParentStart="true"
-
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="5dp"
+            android:gravity="center"
             android:text="back picture"
             android:textColor="#000000"
             android:textSize="16sp" />
