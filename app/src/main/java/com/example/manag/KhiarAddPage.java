@@ -78,9 +78,10 @@ public class KhiarAddPage extends AppCompatActivity {
     Product product;
     TextView productIngredientsTextView;
     String productIngredients;
-    boolean keto;
-    boolean sugarFree;
-    boolean vegan;
+    boolean keto=true;
+    boolean sugarFree=true;
+    boolean vegan=true;
+
     int BACK =1;
     ImageView ingredientsBtn;
     private ImageView front_imageV;
@@ -247,24 +248,22 @@ public class KhiarAddPage extends AppCompatActivity {
         }else { Toast.makeText(getApplicationContext(),"pleas add one image",Toast.LENGTH_LONG).show();
         }
 
-
     }
-
-    public void ProductIngredients(View v) {
-        Intent ingredientsImg = new Intent(this, ingredientsProductImg.class);
+    public void ProductIngredients(View v){
+        Intent ingredientsImg = new Intent(this,ingredientsProductImg.class);
         startActivity(ingredientsImg);
     }
     public void dietSection(){
-        keto=true;
-        sugarFree=true;
-        vegan=true;
-        /**String[] ka={"apple","orange","dates","mango","pomegranate","banana","dried fruit","grape","kiwi","peach","fig","cantaloupe","pineapple","pear","raisin",
-         "potatoes","sweet potatoes","baked potatoes","corn","peas","carrot","yam", "avocado oil",
-         "rice", "wheat", "oats", "barley","quinoa","kale",
-         "bread","corn flakes","pasta", "pizza","popcorn",
-         "Beans"};
-         String[] la={"soybean oil","olive oil","coconut oil"};
-         String[] va={"milk"};*/
+
+
+        String[] ka={"apple","orange","dates","mango","pomegranate","banana","dried fruit","grape","kiwi","peach","fig","cantaloupe","pineapple","pear","raisin",
+                "potatoes","sweet potatoes","baked potatoes","corn","peas","carrot","yam", "avocado oil",
+                "rice", "wheat", "oats", "barley","quinoa","kale",
+                "bread","corn flakes","pasta", "pizza","popcorn",
+                "Beans"};
+        /**
+        String[] la={"soybean oil","olive oil","coconut oil"};
+        String[] va={"milk"};*/
         String line="";
         String line2="";
         String line3="";
@@ -272,16 +271,16 @@ public class KhiarAddPage extends AppCompatActivity {
         ArrayList<String> sugarAvoid=new ArrayList<>();
         ArrayList<String> veganvoid=new ArrayList<>();
         try{
-            File file=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\ketoAvoid.txt");
-            Scanner scan=new Scanner(file);
+            //File file=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\ketoAvoid.txt");
+            //Scanner scan=new Scanner(file);
             File file2=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\SugarFreeAvoid.txt");
             Scanner scan2=new Scanner(file2);
             File file3=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\veganAvoid.txt");
             Scanner scan3=new Scanner(file3);
-            while(scan.hasNext()){
+            /**while(scan.hasNext()){
                 line=line.concat(scan.next()+" ");
                 ketoAvoid = new ArrayList<>(Arrays.asList(line.split(",")));
-            }
+            }*/
             while(scan2.hasNext()){
                 line2=line2.concat(scan2.next()+" ");
                 sugarAvoid = new ArrayList<>(Arrays.asList(line2.split(",")));
@@ -294,17 +293,22 @@ public class KhiarAddPage extends AppCompatActivity {
 
         }catch (FileNotFoundException e){
 
-        }catch(IOException e){}
+        }
 
-        /**ArrayList<String> ketoAvoid=new ArrayList<>(Arrays.asList(ka));
-         ArrayList<String> lowAvoid=new ArrayList<>(Arrays.asList(sa));
-         ArrayList<String> veganvoid=new ArrayList<>(Arrays.asList(va));*/
+        ketoAvoid=new ArrayList<>(Arrays.asList(ka));
+        /**ArrayList<String> lowAvoid=new ArrayList<>(Arrays.asList(sa));
+        ArrayList<String> veganvoid=new ArrayList<>(Arrays.asList(va));*/
         String[] sugarfreeDrinksAvoid={"Blueberry", "Caramel", "Chai" , "Chamomile", "Chocolate", "Cinnamon", "Cranberry", "Echinacea"};
 
 
         String i=productIngredientsTextView.getText().toString();
         String s=section.getSelectedItem().toString();
         String n=name.getText().toString();
+        String[] ch=i.split(" ");
+        if(ch[0].contains("ingredients:")){
+            i.replace("ingredients:","");
+
+        }
 
         ArrayList<String> ing = new ArrayList<>(Arrays.asList(i.split(",")));
         if(s.toLowerCase().equals("fresh")){
@@ -330,6 +334,7 @@ public class KhiarAddPage extends AppCompatActivity {
                     sugarFree=false;
                 }
             }
+
         }else{
             for (String ingredient : ing) {
                 for (String avoid : sugarAvoid) {
