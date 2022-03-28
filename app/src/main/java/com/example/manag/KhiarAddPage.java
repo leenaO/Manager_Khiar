@@ -165,7 +165,6 @@ public class KhiarAddPage extends AppCompatActivity {
                 }
 
                 productInsert();
-                Toast.makeText(getApplicationContext(),"add product successfully",Toast.LENGTH_LONG).show();
             }
         });
         ingredientsBtn.setOnClickListener(new View.OnClickListener() {
@@ -209,6 +208,7 @@ public class KhiarAddPage extends AppCompatActivity {
                             map.put("sugarFree",sugarFree);
                             map.put("vegan",vegan);
                             map.put("image",String.valueOf(uri));
+
 
                             FirebaseDatabase.getInstance().getReference().child("Products").push().setValue(map)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
