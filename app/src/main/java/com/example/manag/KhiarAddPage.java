@@ -256,11 +256,11 @@ public class KhiarAddPage extends AppCompatActivity {
     public void dietSection(){
 
 
-        String[] ka={"apple","orange","dates","mango","pomegranate","banana","dried fruit","grape","kiwi","peach","fig","cantaloupe","pineapple","pear","raisin",
+        /**String[] ka={"apple","orange","dates","mango","pomegranate","banana","dried fruit","grape","kiwi","peach","fig","cantaloupe","pineapple","pear","raisin",
                 "potatoes","sweet potatoes","baked potatoes","corn","peas","carrot","yam", "avocado oil",
                 "rice", "wheat", "oats", "barley","quinoa","kale",
                 "bread","corn flakes","pasta", "pizza","popcorn",
-                "Beans"};
+                "Beans"};*/
         /**
         String[] la={"soybean oil","olive oil","coconut oil"};
         String[] va={"milk"};*/
@@ -271,16 +271,16 @@ public class KhiarAddPage extends AppCompatActivity {
         ArrayList<String> sugarAvoid=new ArrayList<>();
         ArrayList<String> veganvoid=new ArrayList<>();
         try{
-            //File file=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\ketoAvoid.txt");
-            //Scanner scan=new Scanner(file);
+            File file=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\ketoAvoid.txt");
+            Scanner scan=new Scanner(file);
             File file2=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\SugarFreeAvoid.txt");
             Scanner scan2=new Scanner(file2);
             File file3=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\veganAvoid.txt");
             Scanner scan3=new Scanner(file3);
-            /**while(scan.hasNext()){
+            while(scan.hasNext()){
                 line=line.concat(scan.next()+" ");
                 ketoAvoid = new ArrayList<>(Arrays.asList(line.split(",")));
-            }*/
+            }
             while(scan2.hasNext()){
                 line2=line2.concat(scan2.next()+" ");
                 sugarAvoid = new ArrayList<>(Arrays.asList(line2.split(",")));
@@ -295,7 +295,7 @@ public class KhiarAddPage extends AppCompatActivity {
 
         }
 
-        ketoAvoid=new ArrayList<>(Arrays.asList(ka));
+        //ketoAvoid=new ArrayList<>(Arrays.asList(ka));
         /**ArrayList<String> lowAvoid=new ArrayList<>(Arrays.asList(sa));
         ArrayList<String> veganvoid=new ArrayList<>(Arrays.asList(va));*/
         String[] sugarfreeDrinksAvoid={"Blueberry", "Caramel", "Chai" , "Chamomile", "Chocolate", "Cinnamon", "Cranberry", "Echinacea"};
