@@ -81,7 +81,6 @@ public class KhiarAddPage extends AppCompatActivity {
     boolean keto=true;
     boolean sugarFree=true;
     boolean vegan=true;
-
     int BACK =1;
     ImageView ingredientsBtn;
     private ImageView front_imageV;
