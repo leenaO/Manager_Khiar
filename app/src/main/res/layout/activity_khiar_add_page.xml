@@ -20,7 +20,7 @@
     <!--        app:layout_constraintTop_toTopOf="parent"-->
     <!--        app:layout_constraintVertical_bias="0.82"-->
     <!--        tools:ignore="TouchTargetSizeCheck" />-->
-    <TextVie
+    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
         app:layout_constraintStart_toEndOf="@+id/relativeLayout"
         app:layout_constraintTop_toTopOf="@+id/relativeLayout">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/bPicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentTop="false"
             android:layout_alignParentEnd="true"
-
+            android:background="@color/white"
             android:layout_alignParentRight="false"
             android:layout_marginStart="0dp"
             android:layout_marginTop="5dp"
