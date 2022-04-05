@@ -86,9 +86,13 @@ public class KhiarAddPage extends AppCompatActivity {
     private ImageView front_imageV;
     private RelativeLayout frontP, backP;
     StorageReference storageReference;
+    static final int CAMERA_REQUEST_CODE= 200;
+    static final int STORAGE_REQUEST_CODE=400;
+    static final int IMAGE_PICK_GALLERY_CODE=1000;
+    static final int IMAGE_PICK_CAMERA_CODE=1001;
     String cameraPermission[] = {Manifest.permission.CAMERA};
     String storagePermission[];
-
+    Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -136,39 +140,72 @@ public class KhiarAddPage extends AppCompatActivity {
 
     }
 
-
+    /**file extinction jpg , png,... **/
+    private String getfileextiontio(Uri u){
+        ContentResolver resolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(resolver.getType(u));
+    }
     private void productInsert() {
+        if(uri != null){
+            StorageReference storageReference1 = storageReference.child(System.currentTimeMillis()+"."+getfileextiontio(uri));
+            storageReference1.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("name", name.getText().toString());
+                            map.put("price", price.getText().toString());
+                            map.put("amount", amount.getText().toString());
+                            map.put("section", section.getSelectedItem().toString());
+                            map.put("ingredients", productIngredientsTextView.getText().toString());
+                            dietSection();
+                            map.put("keto",keto);
+                            map.put("sugarFree",sugarFree);
+                            map.put("vegan",vegan);
+                            map.put("image",String.valueOf(uri));
 
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name.getText().toString());
-        map.put("price", price.getText().toString());
-        map.put("amount", amount.getText().toString());
-        map.put("section", section.getSelectedItem().toString());
-        map.put("ingredients", productIngredientsTextView.getText().toString());
-        dietSection();
-        map.put("keto",keto);
-        map.put("sugarFree",sugarFree);
-        map.put("vegan",vegan);
+                            FirebaseDatabase.getInstance().getReference().child("Products").push().setValue(map)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            name.setText("");
+                                            price.setText("");
+                                            amount.setText("");
+                                            productIngredientsTextView.setText("");
+                                            front_imageV.setImageURI(null);
+                                            Toast.makeText(getApplicationContext(), "Product successfully added", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "Could not added"+e.getMessage(), Toast.LENGTH_SHORT).show();
 
-        FirebaseDatabase.getInstance().getReference().child("Products").push().setValue(map)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        name.setText("");
-                        price.setText("");
-                        amount.setText("");
-                        productIngredientsTextView.setText("");
-                        front_imageV.setImageURI(null);
-                        Toast.makeText(getApplicationContext(), "Product successfully added", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Could not added"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-            }
-        });
+                        }
+                    });
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }else { Toast.makeText(getApplicationContext(),"pleas add one image",Toast.LENGTH_LONG).show();
+        }
 
     }
     public void ProductIngredients(View v){
@@ -290,6 +327,140 @@ public class KhiarAddPage extends AppCompatActivity {
         }
 
     }
+    private void showImageImportDialog() {
+        String[] items = {"Camera", "Gallery"};
+        androidx.appcompat.app.AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("select Image");
+        dialog.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i ==0){
+                    //camera
+                    if(checkCameraPermission()) {
+                        pickCamera();
+                    }else {
+                        requestCameraPermission();
+                    }
+                }else if(i==1){
+                    //gallery
+                    if(checkStoragePermission()){
+                        pickGallery();
+                    }
+                }
+            }
+        });
+        dialog.create().show();
+    }
+
+    private void pickGallery() {
+        Intent intent =new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
+
+    }
+    private void requestCameraPermission() {
+        if (ContextCompat.checkSelfPermission(KhiarAddPage.this, Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(this,cameraPermission,CAMERA_REQUEST_CODE);
+    }
+
+    private void pickCamera() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "new-photo-name.jpg");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "Image capture by camera");
+        uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(cameraIntent, IMAGE_PICK_CAMERA_CODE);
+    }
 
 
+
+    private boolean checkStoragePermission() {
+        boolean result= ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==(PackageManager.PERMISSION_GRANTED);
+        return result;
+    }
+
+
+
+    private boolean checkCameraPermission() {
+        boolean result = ContextCompat.checkSelfPermission(this, CAMERA)==(PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==(PackageManager.PERMISSION_GRANTED);
+
+        return result && result1;
+
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case CAMERA_REQUEST_CODE:
+                if (grantResults.length > 0) {
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && writeStorageAccepted) {
+                        pickCamera();
+                    } else {
+                        Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+            case STORAGE_REQUEST_CODE:
+                if (grantResults.length > 0) {
+                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if (writeStorageAccepted) {
+                        pickGallery();
+                    } else {
+                        Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
+                uri = data.getData();
+                front_imageV.setImageURI(uri);
+
+            }
+            if (requestCode == IMAGE_PICK_CAMERA_CODE) {
+                try {
+                    ContentResolver cr = getContentResolver();
+                    try {
+                        // Creating a Bitmap with the image Captured
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(cr, uri);
+                        // Setting the bitmap as the image of the
+                        front_imageV.setImageBitmap(bitmap);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (IllegalArgumentException e) {
+                    if (e.getMessage() != null)
+                        Log.e("Exception", e.getMessage());
+                    else
+                        Log.e("Exception", "Exception");
+                    e.printStackTrace();
+
+                }
+            }
+        }
+        if(requestCode==BACK){
+            if(resultCode==RESULT_OK){
+                productIngredients=data.getStringExtra("IngredientsKey");
+                productIngredientsTextView.setText(productIngredients);
+            }
+        }
+    }
+
+    // when click card relative
+    public void FP(View view) {
+        showImageImportDialog();
+    }
 }
+
