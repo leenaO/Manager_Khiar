@@ -155,6 +155,8 @@ public class KhiarAddPage extends AppCompatActivity {
                     storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
+                            DatabaseReference dbr=FirebaseDatabase.getInstance().getReference("Products");
+                            String ProductId=dbr.push().getKey();
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name.getText().toString());
@@ -163,6 +165,7 @@ public class KhiarAddPage extends AppCompatActivity {
                             map.put("section", section.getSelectedItem().toString());
                             map.put("ingredients", productIngredientsTextView.getText().toString());
                             dietSection();
+                            map.put("productId",ProductId);
                             map.put("keto",keto);
                             map.put("sugarFree",sugarFree);
                             map.put("vegan",vegan);
@@ -463,4 +466,3 @@ public class KhiarAddPage extends AppCompatActivity {
         showImageImportDialog();
     }
 }
-

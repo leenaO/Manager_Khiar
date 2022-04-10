@@ -10,6 +10,15 @@ public class Product {
     boolean keto=true;
     boolean sugarFree=true;
     boolean vegan=true;
+    String productId;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
     public boolean isLow() {
         return sugarFree;

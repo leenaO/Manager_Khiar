@@ -31,7 +31,7 @@ public class DeleteProductPage extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclreView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         FirebaseRecyclerOptions<Product> options = new FirebaseRecyclerOptions.Builder<Product>().setQuery(
-                FirebaseDatabase.getInstance().getReference().child("Data"),
+                FirebaseDatabase.getInstance().getReference().child("Products"),
                 Product.class).build();
         productAdap = new productAdapter(options);
         recyclerView.setAdapter(productAdap);
@@ -74,7 +74,7 @@ public class DeleteProductPage extends AppCompatActivity {
     private void processSearch(String s){
         FirebaseRecyclerOptions<Product> options =
                 new FirebaseRecyclerOptions.Builder<Product>().setQuery(
-                FirebaseDatabase.getInstance().getReference().child("Data").orderByChild("name").startAt(s).endAt(s+"\uf8ff"),
+                FirebaseDatabase.getInstance().getReference().child("Products").orderByChild("name").startAt(s).endAt(s+"\uf8ff"),
                 Product.class).build();
         productAdap=new productAdapter(options);
         productAdap.startListening();

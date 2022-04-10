@@ -73,7 +73,7 @@ public class productAdapter  extends FirebaseRecyclerAdapter<Product,productAdap
                         map.put("amount", pAmount.getText().toString());
                         map.put("image", purl.getText().toString());
 //                        map.put("section", pSection.getResources().getStringArray(R.array.Section));
-                        FirebaseDatabase.getInstance().getReference().child("Data").child(getRef(postion).getKey()).updateChildren(map)
+                        FirebaseDatabase.getInstance().getReference().child("Products").child(getRef(postion).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -103,7 +103,10 @@ public class productAdapter  extends FirebaseRecyclerAdapter<Product,productAdap
                 builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("Data").child(getRef(postion).getKey()).removeValue();
+
+                        FirebaseDatabase.getInstance().getReference().child("Likes").child(product.getProductId()).removeValue();
+                        FirebaseDatabase.getInstance().getReference().child("Products").child(getRef(postion).getKey()).removeValue();
+
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
