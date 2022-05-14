@@ -46,33 +46,16 @@ import java.util.Map;
 
 
 public class ingredientsProductImg extends AppCompatActivity {
-//    Button snapImage,detectIngredients;
-//    TextView textIngredients;
-//    ImageView imgIngredients;
-//    Bitmap bitmap;
-//    static final int REQUEST_IMAGE_CAPTURE = 1;
-
-
-//      int PermissionCode;
-
     EditText editTextIngredients;
     ImageView imgViewIngredients;
     Button saveTheProductIngredients;
-
     static final int CAMERA_REQUEST_CODE= 200;
     static final int STORAGE_REQUEST_CODE=400;
     static final int IMAGE_PICK_GALLERY_CODE=1000;
     static final int IMAGE_PICK_CAMERA_CODE=1001;
-
     String cameraPermission[];
     String storagePermission[];
-
-    //ActivityResultLauncher<Intent> someActivityResultLauncher1;
     Uri uri;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,15 +68,6 @@ public class ingredientsProductImg extends AppCompatActivity {
         imgViewIngredients=findViewById(R.id.imageIv);
         saveTheProductIngredients=findViewById(R.id.saveTheProductIngredients);
 
-//        snapImage=findViewById(R.id.CaptureImage);
-//        detectIngredients=findViewById(R.id.detectIngredients);
-//        textIngredients=findViewById(R.id.ExtractedIngredients);
-//        imgIngredients=findViewById(R.id.ingredientsImg);
-
-
-
-
-
         //camera permission
         cameraPermission= new String[]{
             CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -104,38 +78,13 @@ public class ingredientsProductImg extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String productIngredients = editTextIngredients.getText().toString();
-//                Intent ingredientsIntent = new Intent(ingredientsProductImg.this, KhiarAddPage.class);
                 Intent ingredientsIntent=new Intent();
                 ingredientsIntent.putExtra("IngredientsKey",productIngredients);
                 setResult(RESULT_OK,ingredientsIntent);
                 finish();
-//                startActivity(ingredientsIntent);
             }
         });
-
-
-
     }
-//    private void productIngredientsInsert(){
-//        Map<String,Object> map= new HashMap<>();
-//        map.put("ingredient",saveTheProductIngredients.getText().toString() );
-//        FirebaseDatabase.getInstance().getReference().child("Data").push().setValue(map)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        saveTheProductIngredients.setText("");
-//                        Toast.makeText(getApplicationContext(), "Product ingredients successfully saved", Toast.LENGTH_SHORT).show();
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(getApplicationContext(), "Could not saved", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
-//    }
-
 
       //action bar menu
       @Override
@@ -143,10 +92,9 @@ public class ingredientsProductImg extends AppCompatActivity {
         //inflate menu
           getMenuInflater().inflate(R.menu.add_image_action_bar, menu);
           return true;
-
       }
-      //handel actionbar item click
 
+      //handle actionbar item click
       @Override
       public boolean onOptionsItemSelected(@NonNull MenuItem item) {
           int id =item.getItemId();
@@ -195,7 +143,6 @@ public class ingredientsProductImg extends AppCompatActivity {
       private void pickGallery() {
         Intent intent =new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        //someActivityResultLauncher1.launch(intent);
         startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
 
       }
@@ -208,12 +155,10 @@ public class ingredientsProductImg extends AppCompatActivity {
           Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
           cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
           startActivityForResult(cameraIntent, IMAGE_PICK_CAMERA_CODE);
-          //someActivityResultLauncher1.launch(cameraIntent);
       }
 
       private void requestStoragePermission() {
           ActivityCompat.requestPermissions(this,storagePermission,STORAGE_REQUEST_CODE);
-
       }
 
       private boolean checkStoragePermission() {
@@ -228,9 +173,7 @@ public class ingredientsProductImg extends AppCompatActivity {
       private boolean checkCameraPermission() {
         boolean result = ContextCompat.checkSelfPermission(this, CAMERA)==(PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==(PackageManager.PERMISSION_GRANTED);
-
         return result && result1;
-
           }
 
       @Override

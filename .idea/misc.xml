@@ -6,8 +6,19 @@
         <entry key="..\:/Users/jawaher/Khiar_Manager/app/src/main/res/layout/activity_add_recipe_page.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/jawaher/Khiar_Manager/app/src/main/res/layout/activity_ingredients_product_img.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/jawaher/Khiar_Manager/app/src/main/res/layout/activity_khiar_add_page.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/drawable/ic_keyboard_arrow_left_black_24dp.xml" value="0.165" />
         <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/drawable/manager_layout.xml" value="0.1" />
-        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_khiar_add_page.xml" value="0.1" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_add_recipe_page.xml" value="0.25" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_add_recpie_ingredients.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_delete_product_page.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_forgetpass.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_ingredients_product_img.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_khiar_add_page.xml" value="0.165" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_sign_in.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/activity_sign_up.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/dialog_content.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/leele/AndroidStudioProjects/Manag/app/src/main/res/layout/product_cardview.xml" value="0.55" />
       </map>
     </option>
   </component>

@@ -62,6 +62,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -93,11 +94,13 @@ public class KhiarAddPage extends AppCompatActivity {
     String cameraPermission[] = {Manifest.permission.CAMERA};
     String storagePermission[];
     Uri uri;
+    TextView textView4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_khiar_add_page);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Spinner mySpin = (Spinner) findViewById(R.id.spinner);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -109,6 +112,7 @@ public class KhiarAddPage extends AppCompatActivity {
         mySpin.setAdapter(myAdpt);
 
         product= new Product();
+        textView4= findViewById(R.id.textView4);
         name=(EditText) findViewById(R.id.addpname);
         price=(EditText) findViewById(R.id.addpprice);
         amount=(EditText) findViewById(R.id.addpamount);
@@ -155,8 +159,11 @@ public class KhiarAddPage extends AppCompatActivity {
                     storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            DatabaseReference dbr=FirebaseDatabase.getInstance().getReference("Products");
-                            String ProductId=dbr.push().getKey();
+                            //DatabaseReference dbr=FirebaseDatabase.getInstance().getReference("Products");
+                            //DatabaseReference dbr1=FirebaseDatabase.getInstance().getReference("Products").push();
+                            DatabaseReference db2 = FirebaseDatabase.getInstance().getReference().child("Products").push();
+
+                            String ProductId=db2.push().getKey();
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name.getText().toString());
@@ -166,13 +173,14 @@ public class KhiarAddPage extends AppCompatActivity {
                             map.put("ingredients", productIngredientsTextView.getText().toString());
                             dietSection();
                             map.put("productId",ProductId);
+                            map.put("productKey",db2.getKey());
                             map.put("keto",keto);
                             map.put("sugarFree",sugarFree);
                             map.put("vegan",vegan);
                             map.put("image",String.valueOf(uri));
 
 
-                            FirebaseDatabase.getInstance().getReference().child("Products").push().setValue(map)
+                            db2.setValue(map)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
@@ -216,57 +224,45 @@ public class KhiarAddPage extends AppCompatActivity {
         startActivity(ingredientsImg);
     }
     public void dietSection(){
-
-
-        /**String[] ka={"apple","orange","dates","mango","pomegranate","banana","dried fruit","grape","kiwi","peach","fig","cantaloupe","pineapple","pear","raisin",
-                "potatoes","sweet potatoes","baked potatoes","corn","peas","carrot","yam", "avocado oil",
-                "rice", "wheat", "oats", "barley","quinoa","kale",
-                "bread","corn flakes","pasta", "pizza","popcorn",
-                "Beans"};*/
-        /**
-        String[] la={"soybean oil","olive oil","coconut oil"};
-        String[] va={"milk"};*/
-        String line="";
-        String line2="";
-        String line3="";
-        ArrayList<String> ketoAvoid=new ArrayList<>();
-        ArrayList<String> sugarAvoid=new ArrayList<>();
-        ArrayList<String> veganvoid=new ArrayList<>();
-        try{
-            File file=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\ketoAvoid.txt");
-            Scanner scan=new Scanner(file);
-            File file2=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\SugarFreeAvoid.txt");
-            Scanner scan2=new Scanner(file2);
-            File file3=new File("C:\\Users\\leele\\AndroidStudioProjects\\Manag\\app\\veganAvoid.txt");
-            Scanner scan3=new Scanner(file3);
-            while(scan.hasNext()){
-                line=line.concat(scan.next()+" ");
-                ketoAvoid = new ArrayList<>(Arrays.asList(line.split(",")));
-            }
-            while(scan2.hasNext()){
-                line2=line2.concat(scan2.next()+" ");
-                sugarAvoid = new ArrayList<>(Arrays.asList(line2.split(",")));
-            }
-            while(scan3.hasNext()){
-                line3=line3.concat(scan3.next()+" ");
-                veganvoid = new ArrayList<>(Arrays.asList(line3.split(",")));
-            }
-
-
-        }catch (FileNotFoundException e){
+        String k="";
+        String sf="";
+        String v="";
+        try {
+            InputStream in = getAssets().open("ketoAvoid.txt");
+            InputStream in2 = getAssets().open("SugarFreeAvoid.txt");
+            InputStream in3 = getAssets().open("veganAvoid.txt");
+            int size=in.available();
+            int size2=in2.available();
+            int size3=in3.available();
+            byte[] b=new byte[size];
+            byte[] b2=new byte[size2];
+            byte[] b3=new byte[size3];
+            in.read(b);
+            in.close();
+            in2.read(b2);
+            in2.close();
+            in3.read(b3);
+            in3.close();
+            k=new String(b);
+            sf=new String(b2);
+            v=new String(b3);
+        }catch(IOException ex){
 
         }
 
-        //ketoAvoid=new ArrayList<>(Arrays.asList(ka));
-        /**ArrayList<String> lowAvoid=new ArrayList<>(Arrays.asList(sa));
-        ArrayList<String> veganvoid=new ArrayList<>(Arrays.asList(va));*/
-        String[] sugarfreeDrinksAvoid={"Blueberry", "Caramel", "Chai" , "Chamomile", "Chocolate", "Cinnamon", "Cranberry", "Echinacea"};
+        ArrayList<String> ketoAvoid=new ArrayList<>();
+        ArrayList<String> sugarAvoid=new ArrayList<>();
+        ArrayList<String> veganvoid=new ArrayList<>();
 
+        ketoAvoid = new ArrayList<>(Arrays.asList(k.split(",")));
+        sugarAvoid = new ArrayList<>(Arrays.asList(sf.split(",")));
+        veganvoid = new ArrayList<>(Arrays.asList(v.split(",")));
 
         String i=productIngredientsTextView.getText().toString();
         String s=section.getSelectedItem().toString();
         String n=name.getText().toString();
         String[] ch=i.split(" ");
+
         if(ch[0].contains("ingredients:")){
             i.replace("ingredients:","");
 
@@ -280,34 +276,28 @@ public class KhiarAddPage extends AppCompatActivity {
                 }
             }
         }else {
+
             for (String ingredient : ing) {
                 for (String avoid : ketoAvoid) {
                     if (ingredient.toLowerCase().trim().contains(avoid.toLowerCase().trim())) {
                         keto = false;
                     }
                 }
-
-
             }
         }
         if(s.toLowerCase().equals("drinks")){
-            for(String avoid: sugarfreeDrinksAvoid){
+            for(String avoid: sugarAvoid){
                 if(n.toLowerCase().trim().contains(avoid.toLowerCase().trim())){
                     sugarFree=false;
                 }
-            }
-
-        }else{
+            }}else{
             for (String ingredient : ing) {
                 for (String avoid : sugarAvoid) {
                     if (ingredient.toLowerCase().trim().contains(avoid.toLowerCase().trim())) {
                         sugarFree = false;
                     }
                 }
-
-
             }
-
         }
         if(s.toLowerCase().equals("frozen")){
             for(String avoid: veganvoid){
@@ -315,7 +305,6 @@ public class KhiarAddPage extends AppCompatActivity {
                     vegan=false;
                 }
             }
-
         }else{
             for (String ingredient : ing) {
                 for (String avoid : veganvoid) {
@@ -324,11 +313,8 @@ public class KhiarAddPage extends AppCompatActivity {
                     }
                 }
 
-
             }
-
         }
-
     }
     private void showImageImportDialog() {
         String[] items = {"Camera", "Gallery"};
@@ -360,8 +346,8 @@ public class KhiarAddPage extends AppCompatActivity {
         Intent intent =new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
-
     }
+
     private void requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(KhiarAddPage.this, Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this,cameraPermission,CAMERA_REQUEST_CODE);
@@ -377,22 +363,17 @@ public class KhiarAddPage extends AppCompatActivity {
         startActivityForResult(cameraIntent, IMAGE_PICK_CAMERA_CODE);
     }
 
-
-
     private boolean checkStoragePermission() {
         boolean result= ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==(PackageManager.PERMISSION_GRANTED);
         return result;
     }
 
-
-
     private boolean checkCameraPermission() {
         boolean result = ContextCompat.checkSelfPermission(this, CAMERA)==(PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==(PackageManager.PERMISSION_GRANTED);
-
         return result && result1;
-
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

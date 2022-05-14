@@ -5,6 +5,7 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/productCV"
     android:layout_width="135dp"
     android:layout_height="175dp"
     android:elevation="4dp"
@@ -31,9 +32,9 @@
             android:id="@+id/productName"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/productImage"
+            android:layout_below="@id/deleteProduct"
             android:layout_marginLeft="1dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="13dp"
             android:text="Chicken Spicy"
             android:textColor="#000000" />
 
@@ -42,9 +43,10 @@
             android:layout_width="24dp"
             android:layout_height="20dp"
             android:layout_below="@id/productImage"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="14dp"
-            android:layout_toRightOf="@+id/productName"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/modifyProduct"
+
             android:background="@drawable/delete"
             android:contentDescription="delete" />
 
@@ -52,10 +54,10 @@
             android:id="@+id/modifyProduct"
             android:layout_width="24dp"
             android:layout_height="21dp"
-            android:layout_below="@id/deleteProduct"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="2dp"
-            android:layout_toRightOf="@+id/productName"
+            android:layout_below="@id/productImage"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+
             android:background="@drawable/write"
             android:contentDescription="modify"
 

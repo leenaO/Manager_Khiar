@@ -11,6 +11,23 @@ public class Product {
     boolean sugarFree=true;
     boolean vegan=true;
     String productId;
+    String productKey;
+
+    public boolean isSugarFree() {
+        return sugarFree;
+    }
+
+    public void setSugarFree(boolean sugarFree) {
+        this.sugarFree = sugarFree;
+    }
+
+    public String getProductKey() {
+        return productKey;
+    }
+
+    public void setProductKey(String productKey) {
+        this.productKey = productKey;
+    }
 
     public String getProductId() {
         return productId;
