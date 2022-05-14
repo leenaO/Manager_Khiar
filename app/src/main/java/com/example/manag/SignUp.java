@@ -19,8 +19,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -31,6 +34,8 @@ public class SignUp extends AppCompatActivity {
     ProgressDialog progressDialog;
     String  password , e_mail;
     String times = ""+System.currentTimeMillis();
+    DatabaseReference RF = FirebaseDatabase.getInstance().getReference("Manger").push();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +82,7 @@ public class SignUp extends AppCompatActivity {
                     return;
 
                 }
-                createaccount();
+                savefirbasedata();
 
             }
         });
@@ -92,64 +97,50 @@ public class SignUp extends AppCompatActivity {
     private void createaccount() {
         progressDialog.setMessage("Create Account...");
         progressDialog.show();
-        fAuth.createUserWithEmailAndPassword(e_mail,password)
-                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(SignUp.this, "User Created.", Toast.LENGTH_SHORT).show();
-                        AlertDialog alertDialog = new AlertDialog.Builder(SignUp.this).create();
-                        alertDialog.setTitle("Warning");
-                        alertDialog.setMessage("The Key Must Kept In Your Mind To Be Able To Login In The Future \n"+"\n"+times);
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                alertDialog.dismiss();
-                                savefirbasedata();
-
-                            }
-                        });
-                        alertDialog.show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
-                        Toast.makeText(SignUp.this, "Error! "+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+        Toast.makeText(SignUp.this, "User Created.", Toast.LENGTH_SHORT).show();
+        AlertDialog alertDialog = new AlertDialog.Builder(SignUp.this).create();
+        alertDialog.setTitle("Warning");
+        alertDialog.setMessage("The Key Must Kept In Your Mind To Be Able To Login In The Future \n"+"\n"+times);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                alertDialog.dismiss();
+                progressDialog.dismiss();
+                startActivity(new Intent(getApplicationContext() , KhiarAddPage.class));
+            }
+        });
+        alertDialog.show();
     }
 
     private void savefirbasedata() {
         progressDialog.setMessage("Saving Account Info...");
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("uid",fAuth.getUid());
-        hashMap.put("keyuser",times);
-        hashMap.put("email",""+e_mail);
-        hashMap.put("pass",""+password);
-        DatabaseReference RF = FirebaseDatabase.getInstance().getReference("Manger");
-        RF.child(fAuth.getUid()).setValue(hashMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        progressDialog.dismiss();
-                        startActivity(new Intent(SignUp.this,KhiarAddPage.class));
-                        finish();
+        DatabaseReference RF1 = FirebaseDatabase.getInstance().getReference("Manger");
+        RF1.orderByChild("email").equalTo(e_mail).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    email.setError("this email is already exist! try other email");
+                    return;
+                }
+                else{
+                    HashMap<String,Object> hashMap = new HashMap<>();
+                    hashMap.put("uid",RF.getKey());
+                    hashMap.put("keyuser",times);
+                    hashMap.put("email",""+e_mail);
+                    hashMap.put("pass",""+password);
+                    RF.setValue(hashMap);
+                    createaccount();
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
-                        //   startActivity(new Intent(SignUp.this,Home.class));
-                        Toast.makeText(getApplicationContext(),"Failed Saving.."+e.getMessage(),Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 
 }
-

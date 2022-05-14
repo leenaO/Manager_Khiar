@@ -24,12 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class forgetpass extends AppCompatActivity {
     private EditText Email;
     private TextView key;
     private Button Reset, Back;
 
-    private FirebaseAuth auth;
 
     private ProgressDialog progressDialog;
     @Override
@@ -46,7 +47,6 @@ public class forgetpass extends AppCompatActivity {
         progressDialog.setTitle("pleas wait");
         progressDialog.setCanceledOnTouchOutside(false);
 
-        auth = FirebaseAuth.getInstance();
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,34 +77,41 @@ public class forgetpass extends AppCompatActivity {
                 }
 
                 DatabaseReference RF = FirebaseDatabase.getInstance().getReference("Manger");
-                RF.addListenerForSingleValueEvent(new ValueEventListener() {
+                DatabaseReference RF1 = FirebaseDatabase.getInstance().getReference("Manger");
+                RF1.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot d : snapshot.getChildren()){
-                            String getemail = d.child("email").getValue(String.class);
-                            String getkey = d.child("keyuser").getValue(String.class);
-                            if(email.equals(getemail)) {
-                                FirebaseUser currentUser = auth.getCurrentUser();
-                                if(currentUser != null) {
-                                    key.setText(getkey);
-                                    progressDialog.dismiss();
+                        if (snapshot.exists()) {
+                            RF.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for(DataSnapshot d : snapshot.getChildren()) {
+                                        String getkey = d.child("keyuser").getValue(String.class);
+                                        key.setText(getkey);
+                                        progressDialog.dismiss();
+                                    }
                                 }
-                            }else if(!email.equals(getemail)){
-                                Email.setError("The Email Not Found Or Deleted ");
-                                progressDialog.dismiss();
 
-                            }
-                        }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Email.setError(error.getMessage());
+                                    progressDialog.dismiss();
+
+                                }
+                            });
+                        }else {
+                            key.setText("");
+                            Email.setError("The Email Not Found Or Deleted ");
+                            progressDialog.dismiss();
+                            return;}
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Email.setError(error.getMessage());
-                        progressDialog.dismiss();
-
 
                     }
                 });
+
 
             }
         });

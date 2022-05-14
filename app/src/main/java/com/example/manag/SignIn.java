@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class SignIn extends AppCompatActivity {
     Button signIn, signUp , forgetPassButton;
     EditText pass;
@@ -44,7 +46,7 @@ public class SignIn extends AppCompatActivity {
         forgetPassButton = (Button)findViewById(R.id.forgetPassButton);
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("please wait...");
+        progressDialog.setTitle("pleas wait...");
         progressDialog.setCanceledOnTouchOutside(false);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,32 +83,27 @@ public class SignIn extends AppCompatActivity {
         DatabaseReference RF = FirebaseDatabase.getInstance().getReference("Manger");
         progressDialog.setMessage("Loading");
         progressDialog.show();
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        RF.addListenerForSingleValueEvent(new ValueEventListener() {
+        RF.orderByChild("keyuser").equalTo(password).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot d :snapshot.getChildren()){
-                    String key = d.child("keyuser").getValue(String.class);
-                    if(key.equals(password)){
-                        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                        if(currentUser != null){
-                            progressDialog.setMessage("Sing in Account ...");
-                            startActivity(new Intent(SignIn.this, KhiarAddPage.class ));
-                            progressDialog.dismiss();
+                if (snapshot.exists()) {
+                    progressDialog.setMessage("Sing in Account ...");
+                    startActivity(new Intent(SignIn.this, KhiarAddPage.class));
+                    progressDialog.dismiss();
+                }else{
+                    pass.setError("the key not found or deleted");
+                    progressDialog.dismiss();
 
-                        }
-                    }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                progressDialog.dismiss();
-                Toast.makeText(SignIn.this, ""+error.getMessage(), Toast.LENGTH_LONG).show();
+                pass.setError(error.getMessage());
 
             }
         });
+
 
     }
 
