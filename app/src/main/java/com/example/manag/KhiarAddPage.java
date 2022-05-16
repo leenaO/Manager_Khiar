@@ -46,6 +46,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -95,6 +96,8 @@ public class KhiarAddPage extends AppCompatActivity {
     String storagePermission[];
     Uri uri;
     TextView textView4;
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -140,6 +143,31 @@ public class KhiarAddPage extends AppCompatActivity {
             }
         });
 
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.product);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@androidx.annotation.NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.product:
+                        return true;
+                    case R.id.orgnize:
+                        startActivity(new Intent(getApplicationContext(),DeleteProductPage.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+
+
+                }
+                return false;
+            }
+        });
 
 
     }

@@ -31,6 +31,7 @@ package com.example.manag;
 
         import com.bumptech.glide.Glide;
         import com.firebase.ui.database.FirebaseRecyclerOptions;
+        import com.google.android.material.bottomnavigation.BottomNavigationView;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
         import com.google.firebase.database.DataSnapshot;
@@ -60,6 +61,8 @@ public class DeleteProductPage extends AppCompatActivity{
     Uri selectedImageUri;
     String productId="";
     DatabaseReference databaseReference;
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +81,34 @@ public class DeleteProductPage extends AppCompatActivity{
                 Product.class).build();
         productAdap = new productAdapter(options,this);
         recyclerView.setAdapter(productAdap);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.orgnize);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@androidx.annotation.NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.product:
+
+                        startActivity(new Intent(getApplicationContext(),KhiarAddPage.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.orgnize:
+
+                        return true;
+
+
+
+                }
+                return false;
+            }
+        });
+
 
     }
 

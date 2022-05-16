@@ -3,6 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-anydpi/grediant.xml" value="0.1" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-anydpi/gredint1.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-anydpi/ic_baseline_person_24.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-anydpi/ic_person_background.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-anydpi/ic_person_foreground.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-v24/secletor.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable-xxxhdpi/grediant.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/drawable/manager_button.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/layout/activity_delete_product_page.xml" value="0.1" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/layout/activity_forgetpass.xml" value="0.1" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/layout/activity_ingredients_product_img.xml" value="0.1" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/layout/activity_khiar_add_page.xml" value="0.1" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/layout/fragment_nav.xml" value="0.1796875" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/menu/add_image_action_bar.xml" value="0.1796875" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/menu/serch_product.xml" value="0.1796875" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.148" />
+        <entry key="..\:/Users/a-m-l/OneDrive/المستندات/GitHub/Manager_Khiar/app/src/main/res/mipmap-anydpi-v26/ic_person.xml" value="0.148" />
         <entry key="..\:/Users/jawaher/Khiar_Manager/app/src/main/res/layout/activity_add_recipe_page.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/jawaher/Khiar_Manager/app/src/main/res/layout/activity_ingredients_product_img.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/jawaher/Khiar_Manager/app/src/main/res/layout/activity_khiar_add_page.xml" value="0.27447916666666666" />

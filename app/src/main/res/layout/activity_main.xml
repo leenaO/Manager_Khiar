@@ -4,59 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#EDFADE"
     app:showAsAction="never"
-    tools:context=".MainActivityManager">
+    tools:context=".MainActivity"
+    android:layoutDirection="ltr"
+    >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="username"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="63dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <RelativeLayout
-        android:layout_width="338dp"
-        android:layout_height="309dp"
-        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="41sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_weight="1"
+        tools:layout_editor_absoluteX="0dp">
+
 
         <!--        <Button-->
         <!--            android:id="@+id/button2"-->
@@ -126,39 +90,390 @@
         <!--            tools:srcCompat="@drawable/icons8_grocery_shelf_100" -->
 
 
-        <ImageButton
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="45dp"
+
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+
+
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/gredint1"
+                ></LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="100dp"
+                android:background="@drawable/grediant">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="7dp"
+                android:paddingTop="3dp"
+                >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/img"
+                    android:layout_gravity="right"
+                    android:paddingTop="3dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingLeft="12dp"
+                android:paddingBottom="10dp"
+                android:text="User"
+                android:paddingRight="50dp"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/usertext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:paddingRight="8dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_marginStart="220dp"
+
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+
+
+            >
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gredint1"
+                ></LinearLayout>
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/grediant">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                >
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_2"
+                    android:layout_gravity="right"
+                    android:paddingRight="10dp"
+                    android:paddingTop="3dp">
+
+
+
+                </ImageView>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingLeft="12dp"
+                android:paddingBottom="10dp"
+                android:text="Product"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:paddingRight="50dp"/>
+
+            <TextView
+                android:id="@+id/totalP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:paddingRight="7dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_marginTop="170dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="45dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gredint1"
+                ></LinearLayout>
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/grediant">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="7dp"
+                android:paddingTop="9dp"
+                >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="3dp"
+                    android:layout_gravity="right"
+                    android:src="@drawable/img_3">
+
+                </ImageView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingLeft="12dp"
+                android:text="Order"
+                android:paddingBottom="10dp"
+                android:paddingRight="50dp"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/ordtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:paddingRight="8dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="170dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:paddingBottom="70dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gredint1"
+                ></LinearLayout>
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/grediant">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="7dp"
+                android:paddingTop="9dp"
+                >
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+
+                    android:src="@drawable/img_4">
+
+                </ImageView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingLeft="12dp"
+                android:text="Recipe"
+                android:paddingRight="50dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/rectext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:paddingRight="8dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/imageButton2"
-            android:layout_width="130dp"
-            android:layout_height="111dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="108dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginBottom="175dp"
-            android:background="@drawable/add4"
-            android:contentDescription="@string/app_name"
-            android:onClick="addProductAction" />
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="400dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="addProductAction"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
 
-        <ImageButton
+            >
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+
+                android:background="@drawable/grediant">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginTop="27dp"
+                    android:src="@drawable/img_8" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+
+                    android:layout_marginLeft="70dp"
+                    android:src="@drawable/img_8" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="35dp"
+                android:text="Add new Products"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/imageButton3"
-            android:layout_width="135dp"
-            android:layout_height="116dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="107dp"
-            android:layout_marginTop="182dp"
-            android:layout_marginEnd="96dp"
-            android:layout_marginBottom="11dp"
-            android:background="@drawable/org2"
-            android:contentDescription="@string/app_name"
-            android:onClick="DeleteProductAction" /><![CDATA[// app:srcCompat="@drawable/icons8_grocery_shelf_100" />
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="DeleteProductAction"
+            android:paddingBottom="70dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="20dp"
+            app:cardElevation="4dp"
 
-        ]]>
+            >
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+
+                android:background="@drawable/grediant">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginTop="27dp"
+                    android:src="@drawable/img_8" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+
+                    android:layout_marginLeft="70dp"
+                    android:src="@drawable/img_8" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="35dp"
+                android:text="Organize Products"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
     </RelativeLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#a3c834"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.717"
+        app:menu="@menu/bottom_nav_menu"
+
+        android:layout_alignParentBottom="true"
+        app:itemIconTint="@drawable/secletor"
+        app:itemTextColor="@drawable/secletor"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
