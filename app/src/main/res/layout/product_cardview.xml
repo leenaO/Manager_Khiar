@@ -7,34 +7,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/productCV"
     android:layout_width="135dp"
-    android:layout_height="175dp"
+    android:layout_height="170dp"
     android:elevation="4dp"
     android:layout_gravity="center"
     app:cardCornerRadius="10dp"
-    app:contentPadding="3dp"
+    app:contentPadding="2dp"
     app:cardUseCompatPadding="true"
-    android:layout_margin="2dp">
+    android:layout_margin="2dp"
+    android:layoutDirection="ltr">
 
     <RelativeLayout
         android:layout_width="130dp"
         android:layout_height="164dp"
-        android:padding="1dp"
-        android:layout_margin="5dp">
+        android:layout_margin="-10dp">
 
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="match_parent"
-            android:layout_height="91dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_launcher"
+            android:paddingBottom="2dp"/>
 
 
         <TextView
             android:id="@+id/productName"
-            android:layout_width="65dp"
+            android:layout_width="87dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/deleteProduct"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="13dp"
+            android:layout_below="@id/productImage"
+            android:layout_marginTop="-1dp"
+            android:paddingLeft="4dp"
             android:text="Chicken Spicy"
             android:textColor="#000000" />
 
@@ -43,10 +44,9 @@
             android:layout_width="24dp"
             android:layout_height="20dp"
             android:layout_below="@id/productImage"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="7dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/modifyProduct"
-
+            android:layout_toRightOf="@+id/productName"
             android:background="@drawable/delete"
             android:contentDescription="delete" />
 
@@ -54,15 +54,14 @@
             android:id="@+id/modifyProduct"
             android:layout_width="24dp"
             android:layout_height="21dp"
-            android:layout_below="@id/productImage"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-
+            android:layout_below="@id/deleteProduct"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/productName"
             android:background="@drawable/write"
             android:contentDescription="modify"
 
             />
-
 
     </RelativeLayout>
 
